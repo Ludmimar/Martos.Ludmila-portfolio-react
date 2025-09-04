@@ -2,7 +2,7 @@ import { Route, Code, Zap, Sprout, Mail } from "lucide-react";
 
 const StickyNav = () => {
   return (
-    <div className="sticky top-0 z-50 bg-gradient-to-r from-pink-50 to-pink-100 backdrop-blur-sm border-b border-pink-200 shadow-sm">
+    <div className="hidden md:block sticky top-0 z-50 bg-gradient-to-r from-pink-50 to-pink-100 backdrop-blur-sm border-b border-pink-200 shadow-sm">
       <div className="container-custom">
         <div className="flex justify-center gap-3 py-3">
           <a href="#historia" className="chip-sakura">
