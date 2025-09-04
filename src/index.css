@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cherry Blossom Portfolio Design System - Inspired by sakura flowers */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Cherry Blossom Color Palette */
+    --grad-a: 350 100% 88%; /* #ffccd9 - rosa claro */
+    --grad-b: 346 100% 80%; /* #ff99b2 - rosa más intenso */
+    --grad-c: 342 100% 73%; /* #ff7b9c - rosa fuerte */
+    --grad-d: 349 100% 85%; /* #ffb3c1 - pétalo */
+    
+    --text: 0 18% 27%; /* #4d3a3a - marrón suave */
+    --muted: 0 13% 62%; /* #a68787 - gris/marrón suave */
+    --bg-subtle: 345 100% 98%; /* #fff6f9 - rosa muy suave */
+    
+    /* Core Colors */
+    --background: 345 100% 98%;
+    --foreground: 0 18% 27%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 18% 27%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 18% 27%;
+    
+    --primary: 338 100% 70%; /* #ff7bac - rosa vivo */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 347 100% 90%; /* #ffc7d2 - rosa claro */
+    --secondary-foreground: 0 18% 27%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 0 13% 62%;
+    
+    --accent: 347 100% 90%;
+    --accent-foreground: 0 18% 27%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 345 60% 91%;
+    --input: 345 60% 91%;
+    --ring: 338 100% 70%;
+    
+    /* Custom Design Tokens */
+    --gradient-sakura: linear-gradient(-45deg, hsl(var(--grad-a)), hsl(var(--grad-b)), hsl(var(--grad-c)), hsl(var(--grad-d)));
+    --gradient-soft: linear-gradient(180deg, hsl(345 100% 98%), transparent);
+    --shadow-soft: 0 10px 20px rgba(0,0,0,0.08);
+    --shadow-card: 0 4px 14px rgba(0,0,0,0.06);
+    --shadow-hover: 0 14px 28px rgba(0,0,0,0.16);
+    --shadow-button: 0 2px 8px rgba(0,0,0,0.15);
+    --shadow-button-hover: 0 8px 18px rgba(0,0,0,0.2);
+    
+    --radius: 16px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Sidebar tokens (keeping existing) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="10" cy="10" r="2" fill="%23ffb3c1"/><circle cx="30" cy="20" r="3" fill="%23ffdee9"/><circle cx="15" cy="30" r="2.5" fill="%23ffd1dc"/><circle cx="25" cy="5" r="1.5" fill="%23ffe4e1"/></svg>');
+    background-repeat: repeat;
+    background-size: 40px 40px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+  }
+
+  p, li, span {
+    font-size: 1.1rem;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  /* Cherry Blossom Animations */
+  @keyframes sakura-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes float-petal {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(50vh) rotate(180deg) translateX(20px);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg) translateX(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Cherry blossom petal styles */
+  .petal-container {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .flower-petal {
+    position: absolute;
+    top: -50px;
+    pointer-events: none;
+    animation: float-petal linear infinite;
+    transform-origin: center;
+  }
+
+  /* Button variants */
+  .btn-sakura {
+    background: white;
+    color: hsl(var(--primary));
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: var(--shadow-button);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-sakura:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-button-hover);
+    background: hsl(var(--accent));
+    color: hsl(var(--foreground));
+  }
+
+  .btn-download {
+    background: linear-gradient(135deg, hsl(var(--grad-d)), hsl(var(--secondary)));
+    color: hsl(var(--foreground));
+    font-weight: 700;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-download:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--grad-d)));
+  }
+
+  /* Card styles */
+  .card-sakura {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .card-sakura:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Chip/Badge styles */
+  .chip-sakura {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--grad-d)));
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--border));
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 6px hsla(349, 100%, 85%, 0.25);
+  }
+
+  .chip-sakura:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, hsl(var(--grad-d)), hsl(var(--secondary)));
+    box-shadow: 0 4px 12px hsla(349, 100%, 85%, 0.35);
+  }
+
+  /* Section title decoration */
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: hsl(var(--grad-d));
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    animation: shimmer 1.5s ease infinite alternate;
+  }
+
+  /* Gradient background */
+  .gradient-sakura {
+    background: var(--gradient-sakura);
+    background-size: 400% 400%;
+    animation: sakura-gradient 16s ease infinite;
+  }
+
+  /* Utility classes */
+  .text-muted {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .container-custom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 1.25rem;
+  }
+}
