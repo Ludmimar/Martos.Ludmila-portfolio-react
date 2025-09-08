@@ -9,7 +9,7 @@ const Historia = () => {
           Mi Historia
         </h2>
         
-        <p className="text-muted text-lg mb-12 reveal font-semibold">
+        <p className=".text-dark text-lg mb-12 reveal font-semibold">
           <Briefcase className="inline mr-2" size={20} />
           Ventas →
           <GraduationCap className="inline mx-2" size={20} />

@@ -34,7 +34,7 @@ const Skills = () => {
           Mis Superpoderes
         </h2>
         
-        <p className="text-muted text-lg mb-12 reveal font-semibold">
+        <p className=".text-dark text-lg mb-12 reveal font-semibold">
           Mis <em>soft skills</em> de ventas + mis <em>tech skills</em> en IT
         </p>
 
