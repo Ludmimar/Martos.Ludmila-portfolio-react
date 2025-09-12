@@ -142,6 +142,6 @@ Para activar el workflow, sube el repositorio a GitHub y asegúrate de que la ra
 
 ---
 
-## 📄 Licencia
+✍️ Autor
 
-Este proyecto es de código abierto y está disponible bajo la [Licencia MIT](LICENSE).
+Martos Ludmila  [Linkedin](https://www.linkedin.com/in/ludmimar89/)
