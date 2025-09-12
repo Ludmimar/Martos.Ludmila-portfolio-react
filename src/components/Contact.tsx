@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
-const Contacto = () => {
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,16 +36,40 @@ const Contacto = () => {
     }
 
     try {
-      // Simulate email sending (replace with actual implementation)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      // Send using Web3Forms (no backend required)
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
+      if (!accessKey) {
+        throw new Error("Falta configurar VITE_WEB3FORMS_KEY en el entorno.");
+      }
+
+      const payload = {
+        access_key: accessKey,
+        subject: `Nuevo mensaje desde el portfolio` ,
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        // Optional: you can add a redirect URL
+        // redirect: 'https://tu-dominio.com/gracias'
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "No se pudo enviar el mensaje.");
+      }
+
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-      
-      // Reset success message after 5 seconds
+
       setTimeout(() => setStatus("idle"), 5000);
-    } catch (error) {
-      setErrorMessage("Ocurrió un error al enviar el mensaje. Intenta nuevamente.");
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Ocurrió un error al enviar el mensaje.";
+      setErrorMessage(msg);
       setStatus("error");
     }
   };
@@ -60,11 +84,11 @@ const Contacto = () => {
   return (
     <section id="contacto" className="py-16 bg-background">
       <div className="container-custom">
-        <h2 className="section-title text-3xl font-bold mb-8 reveal">Contacto</h2>
+        <h2 className="section-title text-3xl font-bold mb-8">Contacto</h2>
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="reveal">
+          <div>
             <p className=".text-dark text-lg mb-8 font-semibold">
               ¿Charlamos? Estoy abierta a colaborar en proyectos, prácticas y nuevas oportunidades
             </p>
@@ -90,7 +114,7 @@ const Contacto = () => {
           </div>
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6 reveal">
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             {/* Status Messages */}
             {status === "error" && (
               <div className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
@@ -150,4 +174,4 @@ const Contacto = () => {
   );
 };
 
-export default Contacto;
+export default Contact;

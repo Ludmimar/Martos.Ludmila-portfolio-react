@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Menu, X, Download, Github, Linkedin } from "lucide-react";
-import profileImg from "../assets/profile.png";
-import cherryBlossomIcon from "../assets/cherry-blossom.png";
-import wingedStarIcon from "../assets/estrella-alada1.png";
-import yarnBallIcon from "../assets/yarn.png";
+import { Menu, X, Download, Github, Linkedin, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   const handleDownloadCV = () => {
   const link = document.createElement("a");
@@ -24,22 +23,30 @@ const Header = () => {
       <div className="container-custom">
         <nav className="flex items-center justify-between py-4 relative z-20">
           <div className="logo flex items-center gap-2 font-bold text-xl">
-            <img 
-              src={cherryBlossomIcon} 
-              alt="Cherry Blossom" 
-              className="w-8 h-8" 
-            />
+            🌸
             Ludmila Martos
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex gap-6 font-semibold">
-            <li><a href="#historia" className="hover:text-pink-200 transition-colors">Historia</a></li>
-            <li><a href="#skills" className="hover:text-pink-200 transition-colors">Superpoderes</a></li>
-            <li><a href="#proyectos" className="hover:text-pink-200 transition-colors">Proyectos</a></li>
-            <li><a href="#futuro" className="hover:text-pink-200 transition-colors">Futuro</a></li>
-            <li><a href="#contacto" className="hover:text-pink-200 transition-colors">Contacto</a></li>
-          </ul>
+          <div className="hidden md:flex items-center gap-6">
+            <ul className="flex gap-6 font-semibold">
+              <li><a href="#historia" className="hover:text-pink-200 transition-colors">Historia</a></li>
+              <li><a href="#skills" className="hover:text-pink-200 transition-colors">Skills</a></li>
+              <li><a href="#proyectos" className="hover:text-pink-200 transition-colors">Proyectos</a></li>
+              <li><a href="#futuro" className="hover:text-pink-200 transition-colors">Futuro</a></li>
+              <li><a href="#contacto" className="hover:text-pink-200 transition-colors">Contacto</a></li>
+            </ul>
+            
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -52,13 +59,22 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="absolute top-16 right-0 bg-white text-gray-800 rounded-lg shadow-lg p-4 md:hidden z-20">
+            <div className="absolute top-16 right-0 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg p-4 md:hidden z-20">
               <ul className="flex flex-col gap-3">
                 <li><a href="#historia" onClick={toggleMenu} className="block hover:text-pink-600">Historia</a></li>
                 <li><a href="#skills" onClick={toggleMenu} className="block hover:text-pink-600">Superpoderes</a></li>
                 <li><a href="#proyectos" onClick={toggleMenu} className="block hover:text-pink-600">Proyectos</a></li>
                 <li><a href="#futuro" onClick={toggleMenu} className="block hover:text-pink-600">Futuro</a></li>
                 <li><a href="#contacto" onClick={toggleMenu} className="block hover:text-pink-600">Contacto</a></li>
+                <li>
+                  <button
+                    onClick={() => { toggleTheme(); toggleMenu(); }}
+                    className="flex items-center gap-2 w-full text-left hover:text-pink-600"
+                  >
+                    {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                    {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+                  </button>
+                </li>
               </ul>
             </div>
           )}
@@ -66,24 +82,24 @@ const Header = () => {
 
         {/* Hero Section */}
         <div className="text-center py-12 relative z-10">
-          <img
-            src={profileImg}
+        <img
+            src="/src/assets/profile.png"
             alt="Ludmila Martos"
             className="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg mx-auto mb-6"
             style={{ animation: "pop-in 0.9s 0.4s forwards", opacity: 0, transform: "scale(0.9)" }}
           />
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4 max-w-4xl mx-auto">
-            De conectar con personas a conectar con tecnología
+          De conectar con personas a conectar con tecnología
           </h1>
           
           <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 opacity-95 leading-relaxed">
-            Vengo del mundo de <strong>ventas y atención al cliente</strong>, donde aprendí a escuchar y adaptarme rápido.
+          Vengo del mundo de <strong>ventas y atención al cliente</strong>, donde aprendí a escuchar y adaptarme rápido.
             Hoy vuelvo a mi primer amor: la <em>programación</em>. Me inspiran el <strong>anime</strong>
-            <img src={wingedStarIcon} alt="Winged Star" className="inline w-8 h-8 mx-1" />, 
-            las <em>flores de cerezo</em> <img src={cherryBlossomIcon} alt="Cherry Blossom" className="inline w-8 h-8 mx-1" /> 
+            <img src="/src/assets/estrella-alada1.png" alt="Winged Star" className="inline w-8 h-8 mx-1" />, 
+            las <em>flores de cerezo</em> <img src="/src/assets/cherry-blossom.png" alt="Cherry Blossom" className="inline w-8 h-8 mx-1" /> 
             y el <strong>tejido a crochet</strong>
-            <img src={yarnBallIcon} alt="Yarn Ball" className="inline w-8 h-8 mx-1" />, 
+            <img src="/src/assets/yarn.png" alt="Yarn Ball" className="inline w-8 h-8 mx-1" />, 
             y quiero que mi código también refleje esa pasión y dedicación.
           </p>
 

@@ -1,5 +1,6 @@
 import { X, Github, ExternalLink } from "lucide-react";
 import { Project } from "./Portfolio";
+import { useEffect, useRef } from "react";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -7,6 +8,41 @@ interface ProjectModalProps {
 }
 
 const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (project) {
+      // Store the previously focused element
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      
+      // Focus the modal
+      modalRef.current?.focus();
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
+      // Handle escape key
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      
+      document.addEventListener('keydown', handleEscape);
+      
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = 'unset';
+        
+        // Restore focus to the previously focused element
+        if (previousActiveElement.current) {
+          previousActiveElement.current.focus();
+        }
+      };
+    }
+  }, [project, onClose]);
+
   if (!project) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -19,11 +55,18 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     <div
       className="fixed inset-0 bg-black/65 flex items-center justify-center p-4 z-50"
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
     >
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+      <div 
+        ref={modalRef}
+        className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+        tabIndex={-1}
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
+          <h3 id="modal-title" className="text-2xl font-bold text-foreground">{project.title}</h3>
           <button
             onClick={onClose}
             className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
@@ -39,8 +82,10 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
           <div className="aspect-video max-h-60 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex items-center justify-center">
             <img
               src={project.image}
-              alt={project.title}
+              alt={`Screenshot del proyecto ${project.title}`}
               className="w-full h-full object-contain rounded-lg"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

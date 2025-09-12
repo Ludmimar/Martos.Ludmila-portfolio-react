@@ -1,15 +1,15 @@
 import { Briefcase, GraduationCap, LaptopIcon, Route } from "lucide-react";
 
-const Historia = () => {
+const History = () => {
   return (
     <section id="historia" className="py-16 bg-background">
       <div className="container-custom">
-        <h2 className="section-title text-3xl font-bold mb-8 reveal flex items-center gap-3">
+        <h2 className="section-title text-3xl font-bold mb-8 flex items-center gap-3">
           <Route className="text-primary" size={32} />
           Mi Historia
         </h2>
         
-        <p className=".text-dark text-lg mb-12 reveal font-semibold">
+        <p className="text-dark text-lg mb-12 font-semibold">
           <Briefcase className="inline mr-2" size={20} />
           Ventas →
           <GraduationCap className="inline mx-2" size={20} />
@@ -24,7 +24,7 @@ const Historia = () => {
           
           <div className="space-y-12">
             {/* Timeline Item 1 */}
-            <div className="flex gap-6 items-start reveal">
+            <div className="flex gap-6 items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center border-2 border-white shadow-md relative z-10">
                 <Briefcase className="text-blue-600" size={20} />
               </div>
@@ -38,7 +38,7 @@ const Historia = () => {
             </div>
 
             {/* Timeline Item 2 */}
-            <div className="flex gap-6 items-start reveal">
+            <div className="flex gap-6 items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center border-2 border-white shadow-md relative z-10">
                 <GraduationCap className="text-green-600" size={20} />
               </div>
@@ -52,7 +52,7 @@ const Historia = () => {
             </div>
 
             {/* Timeline Item 3 */}
-            <div className="flex gap-6 items-start reveal">
+            <div className="flex gap-6 items-start">
               <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center border-2 border-white shadow-md relative z-10">
                 <LaptopIcon className="text-purple-600" size={20} />
               </div>
@@ -71,4 +71,4 @@ const Historia = () => {
   );
 };
 
-export default Historia;
+export default History;

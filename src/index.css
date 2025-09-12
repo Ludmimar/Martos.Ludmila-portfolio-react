@@ -1,10 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Cherry Blossom Portfolio Design System - Inspired by sakura flowers */
-
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+/* Portfolio Design System - Inspired by sakura flowers */
 
 @layer base {
   :root {
@@ -71,25 +71,55 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* Dark mode cherry blossom palette */
+    --grad-a: 350 20% 15%; /* #2d1b1f - rosa muy oscuro */
+    --grad-b: 346 25% 20%; /* #3d1f26 - rosa oscuro */
+    --grad-c: 342 30% 25%; /* #4d2329 - rosa medio oscuro */
+    --grad-d: 349 20% 18%; /* #2f1d21 - pétalo oscuro */
+    
+    --text: 0 0% 95%; /* #f2f2f2 - texto claro */
+    --muted: 0 0% 70%; /* #b3b3b3 - gris claro */
+    --bg-subtle: 350 20% 8%; /* #1a0f12 - fondo muy oscuro */
+    
+    /* Core Colors */
+    --background: 350 20% 8%;
+    --foreground: 0 0% 95%;
+    
+    --card: 350 15% 12%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 350 15% 12%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 338 100% 70%; /* Keep pink for consistency */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 350 20% 15%;
+    --secondary-foreground: 0 0% 95%;
+    
+    --muted: 350 15% 20%;
+    --muted-foreground: 0 0% 70%;
+    
+    --accent: 350 20% 15%;
+    --accent-foreground: 0 0% 95%;
+    
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 95%;
+    
+    --border: 350 15% 20%;
+    --input: 350 15% 20%;
+    --ring: 338 100% 70%;
+    
+    /* Custom Design Tokens for dark mode */
+    --gradient-sakura: linear-gradient(-45deg, hsl(var(--grad-a)), hsl(var(--grad-b)), hsl(var(--grad-c)), hsl(var(--grad-d)));
+    --gradient-soft: linear-gradient(180deg, hsl(350 20% 8%), transparent);
+    --shadow-soft: 0 10px 20px rgba(0,0,0,0.3);
+    --shadow-card: 0 4px 14px rgba(0,0,0,0.2);
+    --shadow-hover: 0 14px 28px rgba(0,0,0,0.4);
+    --shadow-button: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-button-hover: 0 8px 18px rgba(0,0,0,0.4);
+    
+    /* Sidebar tokens */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -109,6 +139,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for sticky nav */
   }
 
   body {
@@ -119,6 +150,10 @@
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="10" cy="10" r="2" fill="%23ffb3c1"/><circle cx="30" cy="20" r="3" fill="%23ffdee9"/><circle cx="15" cy="30" r="2.5" fill="%23ffd1dc"/><circle cx="25" cy="5" r="1.5" fill="%23ffe4e1"/></svg>');
     background-repeat: repeat;
     background-size: 40px 40px;
+  }
+
+  .dark body {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="10" cy="10" r="2" fill="%234d2329"/><circle cx="30" cy="20" r="3" fill="%233d1f26"/><circle cx="15" cy="30" r="2.5" fill="%232f1d21"/><circle cx="25" cy="5" r="1.5" fill="%232d1b1f"/></svg>');
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -205,12 +240,31 @@
   .reveal {
     opacity: 0;
     transform: translateY(28px);
-    transition: all 0.8s ease;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .reveal.show {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Section transitions */
+  .section-transition {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .section-transition:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   /* Cherry blossom petal styles */
@@ -238,17 +292,38 @@
     border-radius: 999px;
     font-weight: 700;
     box-shadow: var(--shadow-button);
-    transition: var(--transition-smooth);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-sakura::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
   }
 
   .btn-sakura:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
     box-shadow: var(--shadow-button-hover);
     background: hsl(var(--accent));
     color: hsl(var(--foreground));
+  }
+
+  .btn-sakura:hover::before {
+    left: 100%;
+  }
+
+  .btn-sakura:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .btn-download {
@@ -258,12 +333,33 @@
     border-radius: 12px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-button);
+  }
+
+  .btn-download::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
   }
 
   .btn-download:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px) scale(1.05);
     background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--grad-d)));
+    box-shadow: var(--shadow-button-hover);
+  }
+
+  .btn-download:hover::before {
+    left: 100%;
+  }
+
+  .btn-download:active {
+    transform: translateY(0) scale(0.98);
   }
 
   /* Card styles */
@@ -272,12 +368,30 @@
     border: 1px solid hsl(var(--border));
     border-radius: var(--radius);
     box-shadow: var(--shadow-card);
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-sakura::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
   }
 
   .card-sakura:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: var(--shadow-hover);
+    border-color: hsl(var(--primary));
+  }
+
+  .card-sakura:hover::before {
+    left: 100%;
   }
 
   /* Chip/Badge styles */
@@ -292,14 +406,32 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    transition: var(--transition-smooth);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 6px hsla(349, 100%, 85%, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chip-sakura::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
   }
 
   .chip-sakura:hover {
     transform: translateY(-3px) scale(1.05);
     background: linear-gradient(135deg, hsl(var(--grad-d)), hsl(var(--secondary)));
     box-shadow: 0 4px 12px hsla(349, 100%, 85%, 0.35);
+    border-color: hsl(var(--primary));
+  }
+
+  .chip-sakura:hover::before {
+    left: 100%;
   }
 
   /* Section title decoration */
