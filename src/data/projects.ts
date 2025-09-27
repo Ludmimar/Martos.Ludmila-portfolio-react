@@ -45,10 +45,9 @@ export const projects: Project[] = [
   {
     id: "5",
     title: "Java Digitalers",
-    description: "Aplicación desarrollada en Java que simula el proceso de validación de ingreso a la plataforma de Online Banking de una entidad bancaria.",
+    description: "Repositorio del Curso Java Fullstack & Desarrollo Web.",
     stack: "Java · Spring · HTML · CSS · JS",
     link: "https://github.com/Ludmimar/Digitalers-Java-Developer-Telecom",
-    demo: "https://fintech-banco.netlify.app",
     image: "https://raw.githubusercontent.com/Ludmimar/Portfolio_Martos_Ldmila/8756fdf4509c5b8d43d37d0eda08e6ad06e1a1bc/img/java-original.svg"
   },
   {
