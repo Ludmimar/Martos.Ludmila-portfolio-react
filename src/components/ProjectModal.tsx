@@ -1,5 +1,5 @@
 import { X, Github, ExternalLink } from "lucide-react";
-import { Project } from "./Portfolio";
+import { Project } from "../data/projects";
 import { useEffect, useRef } from "react";
 
 interface ProjectModalProps {

@@ -7,6 +7,8 @@ import Future from "./Future";
 import Passions from "./Passions";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import ProjectModal from "./ProjectModal";
+import type { Project } from "../data/projects";
 
 export type { Project } from "../data/projects";
 
@@ -27,6 +29,12 @@ const Portfolio = () => {
       </main>
       
       <Footer />
+      
+      {/* Modal de proyecto */}
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </div>
   );
 };
